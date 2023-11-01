@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Background Gif without Loading Screen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scroll bars */
+        }
+
+        img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Place the gif behind other content */
+        }
+
+        .content-text {
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        /* Button container styles */
+        .button-container {
+            position: fixed;
+            top: 53%; /* Vertically centered */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: row; /* Change to row for horizontal alignment */
+            align-items: center;
+        }
+
+        .color-button {
+            background-color: transparent;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 5px 15px;
+            margin: 0 10px; /* Adjust spacing around the buttons */
+            width: 250px; /* Set a fixed width for buttons */
+            transition: transform 0.3s, background-color 0.3s; /* Add smooth scaling and background color transition */
+        }
+
+        .iphone11-button {
+            background-color: #99edc3; /* Mint green color */
+            animation: slide-in-right 1s ease-in-out forwards; /* Slide in from right animation */
+        }
+
+        .iphone6-button {
+            background-color: #99edc3; /* Mint green color */
+            animation: slide-in-left 1s ease-in-out forwards; /* Slide in from left animation */
+        }
+
+        @keyframes slide-in-right {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-in-left {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .color-button:hover {
+            transform: scale(1.1); /* Scale up on hover */
+        }
+
+        .color-button:active {
+            background-color: #333; /* Change button color on click */
+        }
+
+        /* Adjustments for smaller screens and mobile devices */
+        @media (max-width: 768px) {
+            .button-container {
+                top: 70%; /* Adjust vertical position for mobile */
+                flex-direction: column; /* Stack buttons vertically on mobile */
+                align-items: center; /* Center buttons horizontally */
+            }
+
+            .color-button {
+                width: auto; /* Allow buttons to size based on content */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Gif container -->
+    <img src="gigs.gif" alt="Background Gif">
+
+    <!-- Button container -->
+    <div class="button-container">
+        <button class="color-button iphone11-button" onclick="redirectTo('iphone11')">iPhone 11+</button>
+        <button class="color-button iphone6-button" onclick="redirectTo('iphone6')">iPhone 6+ / Android 10+</button>
+    </div>
+
+    <!-- Content -->
+    <div class="content-text">
+    </div>
+
+    <script>
+        // Function to add a CSS class when a button is clicked
+        function clickButton(button) {
+            button.classList.add("button-clicked");
+            setTimeout(function () {
+                button.classList.remove("button-clicked");
+            }, 200); // Remove the class after 200ms (0.2 seconds)
+        }
+
+        // Handle button clicks and redirections
+        function redirectTo(device) {
+            if (device === 'iphone11') {
+                window.location.href = 'miniev-high/miniev.html';
+                return; // Add this line to prevent further execution
+            }
+            if (device === 'iphone6') {
+                window.location.href = 'miniev/miniev.html';
+                return; // Add this line to prevent further execution
+            }
+
+            // Add your logic here
+        }
+    </script>
+</body>
+</html>
